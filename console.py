@@ -25,12 +25,12 @@ class HBNBCommand(cmd.Cmd):
     """
     Console for AirBnB project
     """
+    prompt = "(hbnb) "
+
     classes = [
             'BaseModel', 'User', 'State', 'City',
             'Amenity', 'Place', 'Review'
             ]
-
-    prompt = '(hbnb) '
 
     def do_quit(self, line):
         """
