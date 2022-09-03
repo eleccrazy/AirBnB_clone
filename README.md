@@ -7,7 +7,7 @@
 ╚═╝░░╚═╝╚═╝╚═╝░░╚═╝╚═════╝░╚═╝░░╚══╝╚═════╝░  ░╚════╝░╚══════╝░╚════╝░╚═╝░░╚══╝╚══════╝
 ```
 
-![AirBnB](assets/hbnb_logo.png)
+![hbnb_logo](https://user-images.githubusercontent.com/56379934/188288226-56f971c5-f841-459b-b6ef-35b6117d64dc.png)
 
 ## DESCRIPTION
 
