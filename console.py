@@ -110,13 +110,12 @@ class HBNBCommand(cmd.Cmd):
         """
         args = build_args(line)
 
-        if len(args) > 0:
-            if args[0] not in HBNBCommand.classes:
-                print("** class doesn't exist **")
+        if len(args) > 0 and args[0] not in HBNBCommand.classes:
+            print("** class doesn't exist **")
         else:
             obj_list = []
             for o in storage.all().values():
-                if len(args) > 1 and args[0] == type(o).__name__:
+                if len(args) > 0 and args[0] == type(o).__name__:
                     obj_list.append(o.__str__())
                 elif len(args) == 0:
                     obj_list.append(o.__str__())
