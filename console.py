@@ -32,6 +32,12 @@ class HBNBCommand(cmd.Cmd):
             'Amenity', 'Place', 'Review'
             ]
 
+    def emptyline(self):
+        """
+        Do nothing with empty line.
+        """
+        pass
+
     def do_quit(self, line):
         """
         Quits the program
