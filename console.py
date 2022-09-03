@@ -30,7 +30,7 @@ class HBNBCommand(cmd.Cmd):
             'Amenity', 'Place', 'Review'
             ]
 
-    prompt = '(hbnb)'
+    prompt = '(hbnb) '
 
     def do_quit(self, line):
         """
