@@ -17,7 +17,7 @@ from io import StringIO
 class TestConsolePromport(unittest.TestCase):
     """
     This class provides all possible test cases regarding prompt
-    response of class Amenity.
+    response of class HBNBCommand.
     """
     def test_output(self):
         self.assertEqual(HBNBCommand.prompt, "(hbnb) ")
