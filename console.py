@@ -220,13 +220,20 @@ class HBNBCommand(cmd.Cmd):
             cmd_dict[matches[0][1]](matches[0][0] + " " + obj_id)
         elif matches[0][1] == "update":
             pattern = re.compile(r"\"(.+?)\", (.+)")
-            sub_match = re.match(pattern, matches[0][2])
-            sub_match = sub_match.groups()
-            key_value = sub_match[1].split(", ")
-            key = make_str_without_quotes(key_value[0])
-            val = make_str_without_quotes(key_value[1])
-            param = "{} {} {} {}".format(matches[0][0], sub_match[0], key, val)
-            cmd_dict[matches[0][1]](param)
+            sub_match = re.match(pattern, matches[0][2]).groups()
+            if sub_match[1][0] != '{':
+                key_value = sub_match[1].split(", ")
+                key = make_str_without_quotes(key_value[0])
+                val = make_str_without_quotes(key_value[1])
+                param = "{} {} {} {}".format(
+                        matches[0][0], sub_match[0], key, val)
+                cmd_dict[matches[0][1]](param)
+            else:
+                dict_repr = eval(sub_match[1])
+                for k, v in dict_repr.items():
+                    param = "{} {} {} {}".format(
+                            matches[0][0], sub_match[0], k, v)
+                    cmd_dict[matches[0][1]](param)
 
 
 if __name__ == '__main__':
