@@ -180,6 +180,35 @@ class HBNBCommand(cmd.Cmd):
 
         print(number_of_instances)
 
+    def default(self, line):
+        """
+        Method called on an input line when the command prefix is not
+        recognized.
+        """
+        cmd_dict = {
+                "all": self.do_all,
+                "count": self.do_instance_counter,
+                "show": self.do_show,
+                "destroy": self.do_destroy,
+                "update": self.do_update,
+                }
+
+        pattern = re.compile(r"^(\w+)\.(\w+)\((.*)\)")
+        matches = re.findall(pattern, line)
+        if (not matches or len(matches[0]) < 2 or
+                matches[0][0] not in HBNBCommand.classes or
+                matches[0][1] not in cmd_dict.keys()):
+            super().default(line)
+            return
+
+        if matches[0][1] == "all" or matches[0][1] == "count":
+            cmd_dict[matches[0][1]](matches[0][0])
+        elif matches[0][1] == "destroy" or matches[0][1] == "show":
+            obj_id = matches[0][2][1:-1]
+            cmd_dict[matches[0][1]](matches[0][0] + " " + obj_id)
+        elif matches[0][1] == "update":
+            pass
+
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
