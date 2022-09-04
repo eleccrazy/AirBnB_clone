@@ -19,8 +19,8 @@ class TestConsolePromport(unittest.TestCase):
     This class provides all possible test cases regarding prompt
     response of class Amenity.
     """
-    def test_prompt_string(self):
-        self.assertEqual("(hbnb) ", HBNBCommand.prompt)
+    def test_output(self):
+        self.assertEqual(HBNBCommand.prompt, "(hbnb) ")
 
     def test_empty_line(self):
         with patch("sys.stdout", new=StringIO()) as output:
