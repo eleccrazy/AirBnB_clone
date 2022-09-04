@@ -17,7 +17,8 @@ from models.state import State
 
 def build_args(line):
     """
-    This function builds the custome command line arguments.
+    This function builds custom command line arguments for further
+    processing.
     """
     return line.split()
 
