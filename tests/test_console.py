@@ -7,6 +7,10 @@ import console
 import inspect
 import pep8
 import unittest
+from console import HBNBCommand
+from unittest.mock import patch
+import sys
+from io import StringIO
 HBNBCommand = console.HBNBCommand
 
 
@@ -38,4 +42,12 @@ class TestConsoleDocs(unittest.TestCase):
         self.assertIsNot(HBNBCommand.__doc__, None,
                          "HBNBCommand class needs a docstring")
         self.assertTrue(len(HBNBCommand.__doc__) >= 1,
-                        "HBNBCommand class needs a docstring")
+                        "HBNBCommand class needs a docstring"i)
+
+    def test_output(self):
+        self.assertEqual(HBNBCommand.prompt, "(hbnb) ")
+
+    def test_empty_line(self):
+        with patch("sys.stdout", new=StringIO()) as output:
+            self.assertFalse(HBNBCommand().onecmd(""))
+            self.assertEqual("", output.getvalue().strip())
