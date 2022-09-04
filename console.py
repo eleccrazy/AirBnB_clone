@@ -3,6 +3,7 @@
 This module contains the the entry point of the command interpreter
 for the AirBnB project.
 """
+import re
 import cmd
 from models.base_model import BaseModel
 from models import storage
