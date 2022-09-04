@@ -17,9 +17,21 @@ from models.state import State
 
 def build_args(line):
     """
-    This function builds the custome command line arguments.
+    This function builds custom command line arguments for further
+    processing.
     """
     return line.split()
+
+
+def make_str_without_quotes(string):
+    """
+    This function reconstructes the str without quote
+    """
+    ret = ""
+    for ch in string:
+        if ch != "\"":
+            ret += ch
+    return ret
 
 
 class HBNBCommand(cmd.Cmd):
@@ -208,7 +220,21 @@ class HBNBCommand(cmd.Cmd):
             obj_id = matches[0][2][1:-1]
             cmd_dict[matches[0][1]](matches[0][0] + " " + obj_id)
         elif matches[0][1] == "update":
-            pass
+            pattern = re.compile(r"\"(.+?)\", (.+)")
+            sub_match = re.match(pattern, matches[0][2]).groups()
+            if sub_match[1][0] != '{':
+                key_value = sub_match[1].split(", ")
+                key = make_str_without_quotes(key_value[0])
+                val = make_str_without_quotes(key_value[1])
+                param = "{} {} {} {}".format(
+                        matches[0][0], sub_match[0], key, val)
+                cmd_dict[matches[0][1]](param)
+            else:
+                dict_repr = eval(sub_match[1])
+                for k, v in dict_repr.items():
+                    param = "{} {} {} {}".format(
+                            matches[0][0], sub_match[0], k, v)
+                    cmd_dict[matches[0][1]](param)
 
 
 if __name__ == '__main__':
