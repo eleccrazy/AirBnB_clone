@@ -169,6 +169,17 @@ class HBNBCommand(cmd.Cmd):
                     obj.__dict__[k] = v
         storage.save()
 
+    def do_instance_counter(self, line):
+        """
+        Counts the number of instances of a class
+        """
+        number_of_instances = 0
+        for instance in storage.all().values():
+            if build_args(line)[0] == type(instance).__name__:
+                number_of_instances += 1
+
+        print(number_of_instances)
+
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
